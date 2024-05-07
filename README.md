@@ -2,7 +2,7 @@ note: While comparing where use single quotes for string text. Double quotes are
 
 ### EXTRACT 
 ```
-SELECT EXTRACT(year FROM "2017-06-15");</br>
+SELECT EXTRACT(year FROM "2017-06-15");
 2017
 ```
 
