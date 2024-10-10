@@ -1,0 +1,40 @@
+# population density rounded to the nearest integer
+
+# cities with min and max densities
+
+# output city, country, density
+
+# columns: city, country, population, area
+
+WITH density AS ( 
+SELECT 
+city, 
+country, 
+ROUND(population/ IF(area=0, NULL, area)) as density 
+from cities_population 
+where area > 0 
+), 
+min_density AS (
+SELECT 
+city, 
+country, 
+density 
+from density 
+where density=(select min(density) from density)),
+max_density AS (
+SELECT 
+city, 
+country, 
+density 
+from density 
+where density=(select max(density) from density)),
+combined_density AS (
+SELECT * from min_density
+union
+SELECT * from max_density)
+
+select * from combined_density order by density asc
+
+
+
+
